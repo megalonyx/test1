@@ -1,4 +1,6 @@
-var http = require('http');
+var   http = require('http')
+	, url = require('url')
+	;
 
 var m = {
 	  port: 8080
@@ -16,7 +18,8 @@ m.dispatch = function (req, res) {
 			+ '<title>Test</title>'
 			+ m.headend
 			+ m.bodybegin
-			+ '<p>';
+		;
+	outstr += '<h1>' + url.parse(req.url).pathname + '</h1><p>';
 	for (i in req) {
 		if (req.hasOwnProperty(i)) {
 			outstr += '' + i + ': ' + req[i] + '<br>';
