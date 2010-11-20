@@ -10,13 +10,20 @@ var m = {
 };
 
 m.dispatch = function (req, res) {
-	var outstr = 
+	var   i
+		, outstr = 
 			  m.headbegin
 			+ '<title>Test</title>'
 			+ m.headend
 			+ m.bodybegin
-			+ '<p>Hello, world!</p>'
-			+ m.bodyend;
+			+ '<p>';
+	for (i in req) {
+		if (req.hasOwnProperty(i)) {
+			outstr += '' + i + ': ' + req[i] + '<br>';
+		}
+	}
+	outstr += '</p>'
+		+ m.bodyend;
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.end(outstr);
 };
